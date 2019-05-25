@@ -1,1 +1,1 @@
-export { default } from './news'
+export { default } from './news-mapped'
