@@ -1,11 +1,12 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const BASE_PATH = path.resolve(__dirname, '../src/')
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development'
 
 module.exports = {
-  watch: mode === 'development',
+  // watch: mode === 'development',
   devtool: 'source-map',
   mode: mode,
   entry: path.resolve(BASE_PATH, 'client/index.js'),
@@ -22,16 +23,26 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    }
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(BASE_PATH, './public/index.html'),
       filename: 'index.html',
       hash: true
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     contentBase: path.join(__dirname, '../build'),
     compress: true,
-    port: 9000
+    port: 9000,
+    hot: true,
+    historyApiFallback: {
+      index: 'index.html'
+    }
   }
 }
