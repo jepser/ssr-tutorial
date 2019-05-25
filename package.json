@@ -22,7 +22,8 @@
     "webpack-dev-server": "^3.4.1"
   },
   "scripts": {
-    "dev": "webpack-dev-server --config ./config/webpack.client.js"
+    "dev": "webpack-dev-server --config ./config/webpack.client.js",
+    "build": "NODE_ENV=production webpack --config ./config/webpack.client.js"
   },
   "dependencies": {
     "@hot-loader/react-dom": "^16.8.6",
