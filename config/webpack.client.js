@@ -40,6 +40,9 @@ module.exports = {
     contentBase: path.join(__dirname, '../build'),
     compress: true,
     port: 9000,
-    hot: true
+    hot: true,
+    historyApiFallback: {
+      index: 'index.html'
+    }
   }
 }
