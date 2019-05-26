@@ -1,24 +1,31 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { StaticRouter } from 'react-router-dom'
+import { StaticRouter, matchPath } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { ServerStyleSheet } from 'styled-components'
 
 import createStore from '../store'
-import { actions } from '../modules/news'
 import App from '../components/app'
+import routes from '../routes'
 
 const render = async (req) => {
+  const url = req.url
+  const { component } = routes.find(route => matchPath(url, route)) || {}
+
   const sheet = new ServerStyleSheet()
   const context = {}
+
   const store = createStore()
-  await store.dispatch(actions.loadNews())
+
+  if (component && component.initialData) {
+    await store.dispatch(component.initialData())
+  }
 
   try {
     const html = renderToString(
       sheet.collectStyles(
         <Provider store={store}>
-          <StaticRouter location={req.url} context={context}>
+          <StaticRouter location={url} context={context}>
             <App />
           </StaticRouter>
         </Provider>
