@@ -5,16 +5,19 @@ import ignoreFavicon from './ignore-favicon'
 import render from './render'
 
 import webpack from 'webpack'
-import webpackConfig from '../../config/webpack.client'
-const compiler = webpack(webpackConfig)
+import webpackConfig from '../../config/webpack.dev'
 
 const server = express()
 
-server.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true, publicPath: webpackConfig.output.publicPath, hot: true
-}))
+if (process.env.NODE_ENV !== 'production') {
+  console.log('noooo production')
+  const compiler = webpack(webpackConfig)
+  server.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true, publicPath: webpackConfig.output.publicPath, hot: true
+  }))
 
-server.use(require('webpack-hot-middleware')(compiler))
+  server.use(require('webpack-hot-middleware')(compiler))
+}
 server.use(ignoreFavicon)
 server.use(express.static(path.resolve(__dirname, '../../build')))
 
