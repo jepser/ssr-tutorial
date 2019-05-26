@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import Layout from '../layout'
 import { Title } from '../global/text'
+import { actions } from '../../modules/news'
 
 const Wrap = styled.div`
   margin-bottom: 24px;
@@ -31,5 +32,7 @@ const News = ({ news, loadNews }) => {
     </Layout>
   )
 }
+
+News.initialData = actions.loadNews
 
 export default News
