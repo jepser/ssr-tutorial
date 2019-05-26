@@ -9,7 +9,9 @@ module.exports = {
   watch: mode === 'development',
   devtool: 'source-map',
   mode: mode,
-  entry: path.resolve(BASE_PATH, 'client/index.js'),
+  entry: [
+    path.resolve(BASE_PATH, 'client/index.js')
+  ],
   output: {
     path: path.resolve(__dirname, '../build'),
     filename: 'main.bundle.js'
@@ -31,7 +33,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(BASE_PATH, './public/index.html'),
-      filename: 'index.html',
+      filename: 'main.html',
       hash: false
     }),
     new webpack.HotModuleReplacementPlugin()
@@ -42,7 +44,7 @@ module.exports = {
     port: 9000,
     hot: true,
     historyApiFallback: {
-      index: 'index.html'
+      index: 'main.html'
     }
   }
 }
