@@ -6,7 +6,7 @@ const BASE_PATH = path.resolve(__dirname, '../src/')
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development'
 
 module.exports = {
-  // watch: mode === 'development',
+  watch: mode === 'development',
   devtool: 'source-map',
   mode: mode,
   entry: path.resolve(BASE_PATH, 'client/index.js'),
@@ -32,7 +32,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(BASE_PATH, './public/index.html'),
       filename: 'index.html',
-      hash: true
+      hash: false
     }),
     new webpack.HotModuleReplacementPlugin()
   ],

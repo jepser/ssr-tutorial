@@ -1,6 +1,6 @@
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { createStore, compose } from 'redux'
 
@@ -23,11 +23,11 @@ const store = createStore(reducers, undefined, enhancer)
 const App = () => {
   return (
     <Provider store={store}>
-      <Router>
+      <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/about' component={About} />
         <Route exact path='/news' component={News} />
-      </Router>
+      </Switch>
     </Provider>
   )
 }
