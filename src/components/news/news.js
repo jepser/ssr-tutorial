@@ -11,13 +11,9 @@ const Article = ({ title, description }) => {
   )
 }
 
-const News = ({ news, addNews }) => {
+const News = ({ news, loadNews }) => {
   useEffect(() => {
-    fetch('https://5ce9a905a8c1ee0014c7065b.mockapi.io/news')
-      .then(r => r.json())
-      .then(r => {
-        addNews(r)
-      })
+    loadNews()
   }, [])
 
   return (

@@ -7,8 +7,8 @@ const mapStateToProps = (state) => ({
 })
 
 const dispatchToProps = (dispatch) => ({
-  addNews: (news) => {
-    dispatch(actions.addNews(news))
+  loadNews: () => {
+    dispatch(actions.loadNews())
   }
 })
 
