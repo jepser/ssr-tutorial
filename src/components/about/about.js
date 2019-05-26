@@ -1,12 +1,14 @@
 import React from 'react'
 
 import Layout from '../layout'
+import { Title } from '../global/text'
 
 const About = () => {
   return (
     <Layout>
-      <h1>My name is Jepser.</h1>
-      <p>I love doge. ❤️</p>
+      <Title>My name is Jepser.</Title>
+      <p>I love doges. ❤️</p>
+      <p>I like React. ⚛︎ </p>
     </Layout>
   )
 }
