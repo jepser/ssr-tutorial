@@ -3,6 +3,7 @@ import { renderToString } from 'react-dom/server'
 import { StaticRouter, matchPath } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { ServerStyleSheet } from 'styled-components'
+import Helmet from 'react-helmet'
 
 import createStore from '../store'
 import App from '../components/app'
@@ -31,9 +32,11 @@ const render = async (req) => {
         </Provider>
       )
     )
+    const head = Helmet.renderStatic()
 
     return {
       html,
+      head,
       styles: sheet.getStyleTags(),
       initialData: store.getState()
     }
