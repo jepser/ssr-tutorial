@@ -1,19 +1,31 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
+const List = styled.ul`
+  display: flex;
+  justify-content: space-around;
+  padding: 24px;
+  background-color: #111;
+`
+
+const Anchor = styled(Link)`
+  color: white;
+`
 
 const Header = () => {
   return (
-    <ul>
+    <List>
       <li>
-        <Link to='/'>Home</Link>
+        <Anchor to='/'>Home</Anchor>
       </li>
       <li>
-        <Link to='/about'>About</Link>
+        <Anchor to='/about'>About</Anchor>
       </li>
       <li>
-        <Link to='/news'>News</Link>
+        <Anchor to='/news'>News</Anchor>
       </li>
-    </ul>
+    </List>
   )
 }
 

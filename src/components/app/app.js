@@ -8,7 +8,6 @@ import News from '../news'
 
 const App = () => {
   return (
-
     <Switch>
       <Route exact path='/' component={Home} />
       <Route exact path='/about' component={About} />

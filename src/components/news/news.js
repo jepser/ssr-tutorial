@@ -1,12 +1,21 @@
 import React, { useEffect } from 'react'
+import styled from 'styled-components'
+
 import Layout from '../layout'
+import { Title } from '../global/text'
+
+const Wrap = styled.div`
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #ccc;
+`
 
 const Article = ({ title, description }) => {
   return (
-    <article>
-      <h2>{title}</h2>
+    <Wrap>
+      <Title as='h2'>{title}</Title>
       <p>{description}</p>
-    </article>
+    </Wrap>
   )
 }
 
@@ -17,7 +26,7 @@ const News = ({ news, loadNews }) => {
 
   return (
     <Layout>
-      <h1>News</h1>
+      <Title>News</Title>
       {news.map(article => <Article key={article.id} {...article} />)}
     </Layout>
   )
