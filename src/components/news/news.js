@@ -1,4 +1,3 @@
-import 'isomorphic-fetch'
 import React, { useEffect } from 'react'
 import Layout from '../layout'
 

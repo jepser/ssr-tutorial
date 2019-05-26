@@ -1,14 +1,28 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
+import store from '../store'
+import { actions } from '../modules/news'
 import App from '../components/app'
 
-export default (req) => {
+const render = async (req) => {
   const context = {}
-  return renderToString(
-    <StaticRouter location={req.url} context={context}>
-      <App />
-    </StaticRouter>
+  await store.dispatch(actions.loadNews())
+
+  const html = renderToString(
+    <Provider store={store}>
+      <StaticRouter location={req.url} context={context}>
+        <App />
+      </StaticRouter>
+    </Provider>
   )
+
+  return {
+    html,
+    initialData: store.getState()
+  }
 }
+
+export default render
