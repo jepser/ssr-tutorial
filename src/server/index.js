@@ -10,7 +10,6 @@ import webpackConfig from '../../config/webpack.dev'
 const server = express()
 
 if (process.env.NODE_ENV !== 'production') {
-  console.log('noooo production')
   const compiler = webpack(webpackConfig)
   server.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true, publicPath: webpackConfig.output.publicPath, hot: true
