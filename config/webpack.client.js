@@ -10,6 +10,7 @@ module.exports = {
   devtool: 'source-map',
   mode: mode,
   entry: [
+    'webpack-hot-middleware/client',
     path.resolve(BASE_PATH, 'client/index.js')
   ],
   output: {
@@ -42,7 +43,6 @@ module.exports = {
     contentBase: path.join(__dirname, '../build'),
     compress: true,
     port: 9000,
-    hot: true,
     historyApiFallback: {
       index: 'main.html'
     }

@@ -4,8 +4,17 @@ import fs from 'fs'
 import ignoreFavicon from './ignore-favicon'
 import render from './render'
 
+import webpack from 'webpack'
+import webpackConfig from '../../config/webpack.client'
+const compiler = webpack(webpackConfig)
+
 const server = express()
 
+server.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true, publicPath: webpackConfig.output.publicPath, hot: true
+}))
+
+server.use(require('webpack-hot-middleware')(compiler))
 server.use(ignoreFavicon)
 server.use(express.static(path.resolve(__dirname, '../../build')))
 
